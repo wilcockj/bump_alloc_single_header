@@ -3,14 +3,18 @@
 #include <stddef.h>
 #include <stdint.h>
 
-// bump allocator
-#define MEM_SIZE 10000
-
 void *ba_alloc_mem(size_t n_bytes);
 int ba_free_mem(size_t n_bytes);
 uint32_t ba_byte_capacity();
 
 #ifdef BUMP_ALLOC_IMPLEMENTATION
+
+// bump allocator
+#ifndef MEM_SIZE
+#define MEM_SIZE 10000
+#pragma message                                                                \
+    "Setting mem size to #MEM_SIZE #define MEM_SIZE above BUMP_ALLOC_IMPLEMENTATION to change"
+#endif
 
 typedef struct {
   uint8_t mem[MEM_SIZE];

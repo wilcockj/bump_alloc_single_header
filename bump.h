@@ -12,8 +12,13 @@ uint32_t ba_byte_capacity();
 // bump allocator
 #ifndef MEM_SIZE
 #define MEM_SIZE 10000
-#pragma message                                                                \
-    "Setting mem size to #MEM_SIZE #define MEM_SIZE above BUMP_ALLOC_IMPLEMENTATION to change"
+
+#define STRINGIFY(x) #x
+#define TOSTRING(x) STRINGIFY(x)
+
+#pragma message "Setting mem size to " TOSTRING(                               \
+    MEM_SIZE) " by default, #define MEM_SIZE above BUMP_ALLOC_IMPLEMENTATION to change"
+
 #endif
 
 typedef struct {
